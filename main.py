@@ -1,4 +1,7 @@
-#ha ha!
+#hoo hoo!!
+
+def loadMoney(fileName):
+	moneyFile = open(fileName, "r")
 
 print "how much dollaz you got"
 oldMoney = float(raw_input())
@@ -7,30 +10,55 @@ newMoney = float(raw_input())
 currentMoney = oldMoney + newMoney
 print "so you're adding %s to your old monay, %s, which is %s." % (newMoney, oldMoney, currentMoney)
 
-print "since I'm fabulous and brilliant, I'll go ahead and subdivide your new dollaz."
+def paycheck(newMoney):
+	if newMoney >= 2000:
+		print "is this a paycheck?"
+		payYN = raw_input()
+			if payYN == "y":
+				print "whose?  jon or rachel?"
+				payWho = raw_input()
+				if payWho == "jon":
+					print "ok!  jon's paycheck = $%s" %newMoney
+				elif payWho == "rachel":
+					print "ok!  rachel's paycheck = $%s" %newMoney
+				elif payWho == "quit":
+					print "ok fine"
+					#do something here, maybe go strt to subdivision()?
+				else:
+					print "type 'jon', 'rachel', or 'quit'."
+	elif payYN == "n":
+		print "don't get all pissed off about it I was just curious"
+	else:
+		print "type 'y' or 'n'"
 
-subdividable = newMoney
-#all these categories will have to have another file to refer to
-bills = bills + 1650
-subdividable =- bills
 
-print "after bills (rent, electricity, water, comcast), you have %s left." % subdividable
-print "you have %s in the billz envelope" % bills
+def subdivision(newMoney):
+	print "since I'm fabulous and brilliant, I'll go ahead and subdivide your new dollaz."
 
-shoes = shoes + 20
-subdividable =- shoes
+	subdividable = newMoney
+	#all these categories will have to have another file to refer to
+	bills = bills + 1650
+	subdividable =- bills
 
-print "after adding to shoe fund you have %s left" %subdividable
-print "you got hella hella %s for shoez" % shoes
+	print "after bills (rent, electricity, water, comcast), you have %s left." % subdividable
+	print "you have %s in the billz envelope" % bills
 
-vacay =+ 150
-subdividable =- vacay
+	shoes = shoes + 20
+	subdividable =- shoes
 
-print "after adding to vacation fund you have %s left" % subdividable
-print "you have $%s left for hella boozin' in the cocomos" % vacay
+	print "after adding to shoe fund you have %s left" %subdividable
+	print "you got hella hella %s for shoez" % shoes
 
-clothes =+ 150
-subdividable =- clothes
+	vacay =+ 150
+	subdividable =- vacay
 
-print "left: %s" % subdividable
-print "clothesfund: %s" % clothes
+	print "after adding to vacation fund you have %s left" % subdividable
+	print "you have $%s left for hella boozin' in the cocomos" % vacay
+
+	clothes =+ 150
+	subdividable =- clothes
+
+	print "left: %s" % subdividable
+	print "clothesfund: %s" % clothes
+
+def summary(currentMoney):
