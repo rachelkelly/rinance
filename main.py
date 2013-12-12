@@ -1,4 +1,4 @@
-#hoo hoo!!
+#some silly attempt at copying brian's perl brinance
 
 def loadMoney(fileName):
 	moneyFile = open(fileName, "r")
@@ -26,10 +26,11 @@ def paycheck(newMoney):
 					#do something here, maybe go strt to subdivision()?
 				else:
 					print "type 'jon', 'rachel', or 'quit'."
-	elif payYN == "n":
-		print "don't get all pissed off about it I was just curious"
-	else:
-		print "type 'y' or 'n'"
+			elif payYN == "n":
+				print "don't get all pissed off about it I was just curious"
+				#subdivision()?
+			else:
+				print "type 'y' or 'n'"
 
 
 def subdivision(newMoney):
