@@ -1,65 +1,45 @@
-#some silly attempt at copying brian's perl brinance
+rent = 1050
+comcast = 75
+sprint = 130
+electric = 100
+loans = 550
+savings = 200
+groceries = 400
+foodOut = 300
+clothes = 30
+vacation = 30
 
-def loadMoney(fileName):
-	moneyFile = open(fileName, "r")
-
-print "how much dollaz you got"
-oldMoney = float(raw_input())
-print "how much dollaz you get"
-newMoney = float(raw_input())
-currentMoney = oldMoney + newMoney
-print "so you're adding %s to your old monay, %s, which is %s." % (newMoney, oldMoney, currentMoney)
-
-def paycheck(newMoney):
-	if newMoney >= 2000:
-		print "is this a paycheck?"
-		payYN = raw_input()
-			if payYN == "y":
-				print "whose?  jon or rachel?"
-				payWho = raw_input()
-				if payWho == "jon":
-					print "ok!  jon's paycheck = $%s" %newMoney
-				elif payWho == "rachel":
-					print "ok!  rachel's paycheck = $%s" %newMoney
-				elif payWho == "quit":
-					print "ok fine"
-					#do something here, maybe go strt to subdivision()?
-				else:
-					print "type 'jon', 'rachel', or 'quit'."
-			elif payYN == "n":
-				print "don't get all pissed off about it I was just curious"
-				#subdivision()?
-			else:
-				print "type 'y' or 'n'"
+expenses = [rent, comcast, sprint, electric, loans, savings, groceries, foodOut, clothes, vacation]
 
 
-def subdivision(newMoney):
-	print "since I'm fabulous and brilliant, I'll go ahead and subdivide your new dollaz."
+print "how much did you get paid"
+newMoney = float(raw_input('> ')
 
+if newMoney > 2500:
+	subdivision()
+else:
+	pass
+if newMoney > 1000:
+	print "let's divide this evenly between vacation & savings."
+else:
+	print "extra?  we'll put it in savings."
+	savings += newMoney
+	print "okay, now you have %s in savings." % savings
+
+def subdivision:
 	subdividable = newMoney
-	#all these categories will have to have another file to refer to
-	bills = bills + 1650
-	subdividable =- bills
+	print "you have %s to break up here." % subdividable
 
-	print "after bills (rent, electricity, water, comcast), you have %s left." % subdividable
-	print "you have %s in the billz envelope" % bills
+	for i in expenses:
+		print "putting \$ %s toward %s envelope." % float(i), i
+		#I don't think this will work to declare the number
+		#relevant to each member of the list of expenses
+		#ideally above print stmt says, at least for the rent portion:
+		#"putting 1050 toward rent envelope."
+		
+		subdividable -= i
+		#and now how to put actual amount toward each i?
+		#rentenvelope += float(i)
 
-	shoes = shoes + 20
-	subdividable =- shoes
-
-	print "after adding to shoe fund you have %s left" %subdividable
-	print "you got hella hella %s for shoez" % shoes
-
-	vacay =+ 150
-	subdividable =- vacay
-
-	print "after adding to vacation fund you have %s left" % subdividable
-	print "you have $%s left for hella boozin' in the cocomos" % vacay
-
-	clothes =+ 150
-	subdividable =- clothes
-
-	print "left: %s" % subdividable
-	print "clothesfund: %s" % clothes
-
-def summary(currentMoney):
+# basically I want to do the subdivision portion in one big for loop for the list of expenses,
+# iterating through correctly & then stopping after one round.
