@@ -26,7 +26,7 @@ if amount > 1500:
     static_rent = static_rent + in_rent
     amount = amount - in_rent
     print "envelope rent: %r  amount left: %r" % (static_rent, amount)
-
+ 
     in_sprint = 200
     static_sprint = static_sprint + in_sprint
     amount = amount - in_sprint
