@@ -4,7 +4,6 @@
 
 #some pseudocode:
 #open moneyfile read/write
-#envelopes = {}
 #for line in moneyfile:
 #   make dict, keys are things-to-pay & values are $$ designated
 #   each thing-to-pay
@@ -14,13 +13,17 @@
 
 envelopes = {}
 moneyfile = open("envelopes.txt", "rw")
-for line in moneyfile:
-    pass
+for money_key, money_val in moneyfile:
+    envelopes[money_key] = money_val
 
-#below line for testing purposes
+#not sure if it matters where amount input happens
+print "how much money is coming in?  no decimals."
+amount = int(raw_input("> "))
+
+#below line for testing purposes - this & all other static_ vars
+#sb read in from moneyfile var.
 static_rent = static_sprint = static_oil = 0
 
-amount = 1550
 if amount > 1500:
     in_rent = 525
     static_rent = static_rent + in_rent
@@ -46,6 +49,11 @@ if amount > 1500:
     print "savings has added amount & is now at: %r" % savings
     amount = 0
     print "amount: %r" % amount
+
+else:
+    static_vacation = static_vacation + amount
+    print "not a full salary check, so we'll put it all into fluff"
+    print "vacation fund now at $%r" % static_vacation
 #   
 #       
 #   
