@@ -1,29 +1,49 @@
 # 2014 rachel kelly, creative commons license
 # a program for budgeting
+# envelopes.txt refers to file from which vars come to create dict
+#   and to write values back as well.
+# envelopes = {} refers to the dict which will hold & manipulate
+#   values for incoming funds.
 
-
-#some pseudocode:
-#open moneyfile read/write
-#for line in moneyfile:
-#   make dict, keys are things-to-pay & values are $$ designated
-#   each thing-to-pay
-#   print things-to-pay
-#
-#then "what is incoming amount"
+# TO-DO:
+#   - read moneyfile values correctly & import to dict
+#   - write moneyfile values back out correctly
+#   - make executable
+#   - bill-pay portion
+#   - refactor to class?   
 
 envelopes = {}
 moneyfile = open("envelopes.txt", "rw")
 for money_key, money_val in moneyfile:
     envelopes[money_key] = money_val
 
-#not sure if it matters where amount input happens
-print "how much money is coming in?  no decimals."
-amount = int(raw_input("> "))
+
+print "money in or out?"
+in_or_out = raw_input("> ")
+
+if in_or_out == "in":
+    print "how much money is coming in?  no decimals, just round down."
+    amount = int(raw_input("> "))
+    #entire amount conditional below sb here probably 
+
+elif in_or_out == "out":
+    bill_paying_list = []
+    print "which bills?  options are rent, sprint, oil, electricity,"
+    print "clothes, shoes, airfare, vacation, & more to come."
+    bill_paying_list.append(envelopes[money_key])
+
+elif in_or_out == "exit":
+    exit(0)
+
+else:
+    print "type 'in' or 'out'.  type exit to quit."
+
 
 #below line for testing purposes - this & all other static_ vars
 #sb read in from moneyfile var.
 static_rent = static_sprint = static_oil = 0
 
+# this is probably where a class would minimize this code
 if amount > 1500:
     in_rent = 525
     static_rent = static_rent + in_rent
@@ -54,7 +74,5 @@ else:
     static_vacation = static_vacation + amount
     print "not a full salary check, so we'll put it all into fluff"
     print "vacation fund now at $%r" % static_vacation
-#   
-#       
-#   
-# please enter $ currently in BOFA:
+
+# pseudocode: write all static_vars to envelopes.txt
