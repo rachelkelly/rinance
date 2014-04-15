@@ -14,9 +14,9 @@
 
 envelopes = {}
 moneyfile = open("envelopes.txt", "rw")
-for money_key, money_val in moneyfile:
-    envelopes[money_key] = money_val
-
+#for money_key, money_val in moneyfile:
+    #envelopes[money_key] = money_val
+    #pass
 
 print "money in or out?"
 in_or_out = raw_input("> ")
@@ -36,7 +36,7 @@ elif in_or_out == "exit":
     exit(0)
 
 else:
-    print "type 'in' or 'out'.  type exit to quit."
+    print "type 'in' or 'out'.  or type 'exit' to quit."
 
 
 #below line for testing purposes - this & all other static_ vars
@@ -48,27 +48,28 @@ if amount > 1500:
     in_rent = 525
     static_rent = static_rent + in_rent
     amount = amount - in_rent
-    print "envelope rent: %r  amount left: %r" % (static_rent, amount)
+    print "envelope rent: $%r  amount left to distribute: $%r" % (static_rent, amount)
  
     in_sprint = 200
     static_sprint = static_sprint + in_sprint
     amount = amount - in_sprint
-    print "envelope sprint: %r  amount left: %r" % (static_sprint, amount)
+    print "envelope sprint: $%r  amount left to distribute: $%r" % (static_sprint, amount)
 
     in_oil = 50
     static_oil = static_oil + in_oil
     amount = amount - in_oil
-    print "envelope oil: %r  amount left: %r" % (static_oil, amount)
+    print "envelope oil: $%r  amount left to distribute: $%r" % (static_oil, amount)
 
     otherthing = 700
     amount = amount - otherthing
     
     savings = 12
-    print "now we'll put the left-over %r into savings" % amount
+    print "now we'll put the left-over $%r into savings" % amount
     savings = savings + amount
-    print "savings has added amount & is now at: %r" % savings
+    print "savings has added all that was left & is now at: $%r" % savings
     amount = 0
-    print "amount: %r" % amount
+    print "amount has been zeroed out."
+    assert amount == 0
 
 else:
     static_vacation = static_vacation + amount
