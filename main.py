@@ -2,22 +2,26 @@
 # a program for budgeting
 # envelopes.txt refers to file from which vars come to create dict
 #   and to write values back as well.
-# envelopes = {} refers to the dict which will hold & manipulate
-#   values for incoming funds.
+# envelopes_dict = {} refers to the dict which will hold & manipulate
+#   values for incoming/outgoing funds.
 
 # TO-DO:
 #   - read moneyfile values correctly & import to dict
 #   - write moneyfile values back out correctly
-#   - make executable
+#   - solve var amount complication for outgoing funds
 #   - bill-pay portion
-#   - refactor to class?   
+#   - refactor to class? or at least make some functions
+#   - shit.  have to change all vars to dict[keys], or something
+#   - make executable
 
-envelopes = {}
+# first: make an empty dict & read all lines in as dict key/vals
+envelopes_dict = {}
 moneyfile = open("envelopes.txt", "rw")
 #for money_key, money_val in moneyfile:
-    #envelopes[money_key] = money_val
+    #envelopes_dict[money_key] = money_val
     #pass
 
+# next: determine whether this is for taking from or adding to envelopes_dict.
 print "money in or out?"
 in_or_out = raw_input("> ")
 
@@ -30,7 +34,11 @@ elif in_or_out == "out":
     bill_paying_list = []
     print "which bills?  options are rent, sprint, oil, electricity,"
     print "clothes, shoes, airfare, vacation, & more to come."
-    bill_paying_list.append(envelopes[money_key])
+    bill_pay_choice = raw_input("> ")
+    if bill_pay_choice in envelopes_dict:
+        pass
+        # ask how much to take & then do it.
+        # this should probably be a function.
 
 elif in_or_out == "exit":
     exit(0)
@@ -76,4 +84,4 @@ else:
     print "not a full salary check, so we'll put it all into fluff"
     print "vacation fund now at $%r" % static_vacation
 
-# pseudocode: write all static_vars to envelopes.txt
+# pseudocode: write all static_vars to envelopes_dict.txt
