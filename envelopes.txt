@@ -1,0 +1,3 @@
+static_rent = 0
+static_sprint = 50
+static_oil = 100
