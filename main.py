@@ -6,7 +6,7 @@
 
 # program map
 # first, in_or_out determines whether check deposit(in) or billpay(out)
-# in:
+# in: 
 # a function called money_distribution() determines, based on
 # deposit, if it will be a total distribution or a partial one,
 # "partial" being that the user will decide how much & where the
