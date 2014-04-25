@@ -20,7 +20,7 @@ def getfile():
     moneyfile = open("envelopes.txt", "r")
     moneyitems = {}
     for line in moneyfile:
-        entry = line.strip(), split(",")
+        entry = line.strip().split(",")
         lineitem = entry[0]
         amount = entry[1]
         moneyitems[lineitem] = amount
@@ -42,9 +42,7 @@ def in_or_out():
         in_or_out()
 
 def money_distribution(in_out_choice):
-    print "success 1"
-    getfile()
-    
+    print "success 1"    
 
 def billpay(in_out_choice):
     print "success 2"
@@ -55,4 +53,5 @@ def billpay(in_out_choice):
 #for i in range (10):
 #    in_or_out()
 
-in_or_out()
+#in_or_out()
+#getfile()
