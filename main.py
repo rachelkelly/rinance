@@ -31,10 +31,10 @@ def in_or_out():
     in_out_choice = raw_input("> ")
     if in_out_choice == "in":
         #have to make this var
-        money_distribution()
+        money_distribution(in_out_choice)
     elif in_out_choice == "out":
         #have to still make this var
-        billpay()
+        billpay(in_out_choice)
     elif in_out_choice == "quit":
         exit(0)
     else:
@@ -42,10 +42,10 @@ def in_or_out():
         in_or_out()
 
 def money_distribution(in_out_choice):
-    pass
+    print "success 1"
 
 def billpay(in_out_choice):
-    pass
+    print "success 2"
 
 #test harness attempt
 #it works but is repetitive for me - but that's ok maybe!
