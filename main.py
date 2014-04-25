@@ -43,6 +43,8 @@ def in_or_out():
 
 def money_distribution(in_out_choice):
     print "success 1"
+    getfile()
+    
 
 def billpay(in_out_choice):
     print "success 2"
