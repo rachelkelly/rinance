@@ -16,6 +16,16 @@
 # will automatically be deducted from their respective envelopes, or
 # b) abnormal and the user will indicate which bill is being paid & how much.
 
+def getfile():
+    moneyfile = open("envelopes.txt", "r")
+    moneyitems = {}
+    for line in moneyfile:
+        entry = line.strip(), split(",")
+        lineitem = entry[0]
+        amount = entry[1]
+        moneyitems[lineitem] = amount
+        print "current %s amount: $%r" % (lineitem, amount)
+
 def in_or_out():
     print "money in or out?"
     in_out_choice = raw_input("> ")
@@ -30,5 +40,17 @@ def in_or_out():
     else:
         print "no doof, type 'in' or 'out', or type 'quit' to, yknow."
         in_or_out()
+
+def money_distribution(in_out_choice):
+    pass
+
+def billpay(in_out_choice):
+    pass
+
+#test harness attempt
+#it works but is repetitive for me - but that's ok maybe!
+#"testing turns fear into boredom"
+#for i in range (10):
+#    in_or_out()
 
 in_or_out()
