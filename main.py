@@ -40,7 +40,6 @@ def in_or_out():
     if in_out_choice == "in":
         envelope_distribution(in_out_choice)    
     elif in_out_choice == "out":
-        #have to still make this var
         bill_pay(in_out_choice)
     elif in_out_choice == "quit":
         exit(0)
@@ -56,13 +55,13 @@ def bill_pay(in_out_choice):
     print "which bill are you paying?"
     whichbill = raw_input("> ")
     if whichbill in moneyitems:
-#        print "the %s is usually $%d.  is that how much it is this time?  y/n" % (whichbill, [*])
+        print "the thatbill is usually $x.  is that how much it is this time?  y/n" #% (whichbill, [*])
         #above line: e.g. 'the sprint bill is usually $175.  is that...'
         print "you can also quit at this point."
         typical_choice = raw_input("> ")
         if typical_choice == "y":
-            print "y"
-
+            # if whichbill in normal_bills, then take closest match ... ?
+            print "ok, taking $x from thatbill" # % (x, y) 
         elif typical_choice == "n":
             print "n"
         elif typical_choice == "quit":
