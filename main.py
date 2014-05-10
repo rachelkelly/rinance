@@ -16,11 +16,17 @@
 # will automatically be deducted from their respective envelopes, or
 # b) abnormal and the user will indicate which bill is being paid & how much.
 
-normal_bills = {'normal_sprint_out': 160, 'normal_oil_out': 50, 'normal_rent_out': 1050,
-               'normal_comcast_out': 75, 'normal_loans_out': 450, 'vacation': 50}
+normal_bills = {'normal_sprint_out': 160, 'normal_oil_out': 50, 
+                'normal_rent_out': 1050, 'normal_comcast_out': 75,
+                'normal_loans_out': 450, 'vacation': 50}
+
 print normal_bills
-inexact_bills = ["electric", "savings", "groceries", "food out", "clothes", "vacation"]
-print inexact_bills
+
+inexact_bills = ["electric", "savings", "groceries", "food out", 
+                 "clothes", "vacation"]
+
+print "inexact bills: %s" % inexact_bills
+
 def getfile():
     moneyfile = open("envelopes.txt", "r")
     moneyitems = {}
@@ -31,12 +37,14 @@ def getfile():
         amount = entry[1]
         moneyitems[lineitem] = amount
         print "current %s amount: $%r" % (lineitem, amount)
+
     print moneyitems
     moneyfile.close()
 
 def in_or_out():
     print "hi!  money in or out?"
     in_out_choice = raw_input("> ")    
+
     if in_out_choice == "in":
         envelope_distribution(in_out_choice)    
     elif in_out_choice == "out":
@@ -54,11 +62,16 @@ def envelope_distribution(in_out_choice):
 def bill_pay(in_out_choice):
     print "which bill are you paying?"
     whichbill = raw_input("> ")
+    
     if whichbill in moneyitems:
-        print "the thatbill is usually $x.  is that how much it is this time?  y/n" #% (whichbill, [*])
+        print "the %[s] thatbill is usually %[s] $x." #% (whichbill, [*])
+        # how to say "ok whichbill == its dict assignment & its value"?
+        print "is that how much it is this time?  y/n"
         #above line: e.g. 'the sprint bill is usually $175.  is that...'
         print "you can also quit at this point."
+        
         typical_choice = raw_input("> ")
+        
         if typical_choice == "y":
             # if whichbill in normal_bills, then take closest match ... ?
             print "ok, taking $x from thatbill" # % (x, y) 
