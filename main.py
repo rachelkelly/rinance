@@ -57,7 +57,7 @@ def in_or_out():
         in_or_out()
 
 def envelope_distribution(in_out_choice):
-    pass
+    pass 
 
 # this has a long way to go
 def bill_pay(in_out_choice, moneyitems):
