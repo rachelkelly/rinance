@@ -27,6 +27,7 @@ inexact_bills = ["electric", "savings", "groceries", "food out",
 
 print "inexact bills: %s" % inexact_bills
 
+# think this moneyitems dict will need to be global somehow
 def getfile():
     moneyfile = open("envelopes.txt", "r")
     moneyitems = {}
@@ -59,11 +60,15 @@ def envelope_distribution(in_out_choice):
     pass
 
 # this has a long way to go
-def bill_pay(in_out_choice):
+def bill_pay(in_out_choice, moneyitems):
     print "which bill are you paying?"
     whichbill = raw_input("> ")
-    
+    if whichbill == moneyitems[item]:
+        print item
+    else:
+        print "didn't work"
     if whichbill in moneyitems:
+        
         print "the %[s] thatbill is usually %[s] $x." #% (whichbill, [*])
         # how to say "ok whichbill == its dict assignment & its value"?
         print "is that how much it is this time?  y/n"
@@ -88,5 +93,5 @@ def bill_pay(in_out_choice):
 #for i in range (10):
     #in_or_out()
 
-#in_or_out()
 getfile()
+in_or_out()
