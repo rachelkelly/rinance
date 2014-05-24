@@ -27,20 +27,23 @@ inexact_bills = ["electric", "savings", "groceries", "food out",
 
 print "inexact bills: %s" % inexact_bills
 
-# think this moneyitems dict will need to be global somehow
-def getfile():
-    moneyfile = open("envelopes.txt", "r")
-    moneyitems = {}
+# the following lines until in_or_out() were formerly a defined fn,
+# but the dict needs to be global so everybody can utilize it equally
 
-    for line in moneyfile:
-        entry = line.strip().split(",")
-        lineitem = entry[0]
-        amount = entry[1]
-        moneyitems[lineitem] = amount
-        print "current %s amount: $%r" % (lineitem, amount)
+moneyfile = open("envelopes.txt", "r")
+moneyitems = {}
 
-    print moneyitems
-    moneyfile.close()
+for line in moneyfile:
+    entry = line.strip().split(",")
+    lineitem = entry[0]
+    amount = entry[1]
+    moneyitems[lineitem] = amount
+    print "current %s amount: $%r" % (lineitem, amount)
+    
+print moneyitems
+moneyfile.close()
+
+# beginning of progrm
 
 def in_or_out():
     print "hi!  money in or out?"
@@ -60,20 +63,26 @@ def envelope_distribution(in_out_choice):
     pass 
 
 # this has a long way to go
-def bill_pay(in_out_choice, moneyitems):
+def bill_pay(in_out_choice):
     print "which bill are you paying?"
     whichbill = raw_input("> ")
-    if whichbill == moneyitems[item]:
+    for i in moneyitems:
+        if whichbill == moneyitems[lineitem]: #not sure if this will work
+            #billtopaynow = whichbill
+            print billtopaynow
+            
+    if whichbill == moneyitems[lineitem]:
         print item
     else:
         print "didn't work"
     if whichbill in moneyitems:
         
-        print "the %[s] thatbill is usually %[s] $x." #% (whichbill, [*])
+        print "the %s is usually %s $%d." #% (moneyitems[whichbill], [*])
         # how to say "ok whichbill == its dict assignment & its value"?
         print "is that how much it is this time?  y/n"
         #above line: e.g. 'the sprint bill is usually $175.  is that...'
         print "you can also quit at this point."
+        
         
         typical_choice = raw_input("> ")
         
@@ -93,5 +102,4 @@ def bill_pay(in_out_choice, moneyitems):
 #for i in range (10):
     #in_or_out()
 
-getfile()
 in_or_out()
