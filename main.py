@@ -66,10 +66,12 @@ def envelope_distribution(in_out_choice):
 def bill_pay(in_out_choice):
     print "which bill are you paying?"
     whichbill = raw_input("> ")
-    for i in moneyitems:
+    for lineitem in moneyitems:
         if whichbill == moneyitems[lineitem]: #not sure if this will work
-            #billtopaynow = whichbill
+            billtopaynow = whichbill
             print billtopaynow
+        else:
+            print "not printing billtopaynow"
             
     if whichbill == moneyitems[lineitem]:
         print item
