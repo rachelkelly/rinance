@@ -16,28 +16,29 @@
 # envelopes.txt file.
 #
 # out:
-# fn billpay() will print all items in moneyfile into a dict called
-# moneyitems.  moneyitems is global so any function can use it.
-# then the user will indicate which bill she is to pay.  then if the input
+# fn get_bill() will ask which bill is to be paid.  bill must have a match
+# in {moneyitems}.
+# then in pay_bill(), if the input
 # has a match in {moneyitems}, it will ask "is it a normal payout," and if it
-# is, it will take that amount out.
+# is, it will take that amount out of its corresponding envelope.
 # e.g. "is 'static_sprint' a normal payout this month," "yes," "ok, taking
 # $160 out of 'static_sprint' envelope."
+# if the typical_choice == 'n', then pay_bill asks how much should come out
+# of $BILL.
 # after a bill is paid, it will ask the user if she wants to pay another.
 # if so, then the process repeats identically.
-# if not, the program prints all bills paid (so a new dict is made of paid
-# bills to report at end of program), all envelope quantities.
+# if not, the program writes all envelope subtractions to envelopes.txt, 
+# prints all bills paid (so a new dict is made of paid
+# bills to report at end of program), all envelope quantities, & exits.
+# decompose bill_pay into get_bill_to_pay and pay_bill for INPUT and OUTPUT,
+# respectively, VALIDATION and COMPUTATION.
 
 normal_bills = {'normal_sprint_out': 160, 'normal_oil_out': 50, 
                 'normal_rent_out': 1050, 'normal_comcast_out': 75,
                 'normal_loans_out': 450, 'vacation': 50}
 
-print normal_bills
-
 inexact_bills = ["electric", "savings", "groceries", "food out", 
                  "clothes", "vacation"]
-
-print "inexact bills: %s" % inexact_bills
 
 # the following lines until in_or_out() were formerly a defined fn,
 # but the dict needs to be global so everybody can utilize it equally
@@ -51,6 +52,7 @@ for line in moneyfile:
     amount = entry[1]
     moneyitems[lineitem] = amount
     print "current %s amount: $%r" % (lineitem, amount)
+    # lineitem, amount = line.strip().split(",")
     
 print moneyitems
 moneyfile.close()
@@ -64,7 +66,7 @@ def in_or_out():
     if in_out_choice == "in":
         envelope_distribution(in_out_choice)    
     elif in_out_choice == "out":
-        bill_pay(in_out_choice)
+        get_bill()
     elif in_out_choice == "quit":
         exit(0)
     else:
@@ -74,25 +76,23 @@ def in_or_out():
 def envelope_distribution(in_out_choice):
     pass 
 
-# this has a long way to go
-def bill_pay(in_out_choice):
-    print "which bill are you paying?"
+def get_bill():
+    print "which bill are you paying (which envelope are you taking from)?"
     whichbill = raw_input("> ")
-    for lineitem in moneyitems:
-        if whichbill == moneyitems[lineitem]: #not sure if this will work
-            billtopaynow = whichbill
-            print billtopaynow
-        else:
-            print "not printing billtopaynow"
-            
-    if whichbill == moneyitems[lineitem]:
-        print item
+    if whichbill in moneyitems:
+        # set whichbill == corresponding value in moneyitems ?? how
+        pay_bill(whichbill)
     else:
-        print "didn't work"
+        raise ValueError("no bill with that value, try again "+whichbill)
+    
+
+# this has a long way to go
+def pay_bill():
+    # just deleted a bunch here that will be covered above in get_bill()
+    
     if whichbill in moneyitems:
         
         print "the %s is usually %s $%d." #% (moneyitems[whichbill], [*])
-        # how to say "ok whichbill == its dict assignment & its value"?
         print "is that how much it is this time?  y/n"
         #above line: e.g. 'the sprint bill is usually $175.  is that...'
         print "you can also quit at this point."
