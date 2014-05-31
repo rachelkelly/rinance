@@ -86,21 +86,25 @@ def get_bill():
     
 # this has a long way to go
 def pay_bill(whichbill):
-    print "the typical amount out for %s is usually $%d." % (moneyitems[whichbill], normal_bills[whichbill])
-    #thisbillmoney = moneyitems[whichbill:value]
-    print "is that how much it is this time?  y/n"
-    #above line: e.g. 'the sprint bill is usually $175.  is that...'
-    print "you can also quit at this point."
-    typical_choice = raw_input("> ")
-        
-    if typical_choice == "y":
-        # if whichbill in normal_bills, then take closest match ... ?
-        print "ok, taking $x from thatbill" # % (x, y)
-        #moneyitems[whichbill] = moneyitems[whichbill] - normal_bills[whichbill]
-    elif typical_choice == "n":
-        print "n"
-    elif typical_choice == "quit":
-        exit(0)
+    if whichbill in normal_bills:            
+        print "the typical amount out for %s is usually $%d." % (moneyitems[whichbill], normal_bills[whichbill])
+        #thisbillmoney = moneyitems[whichbill:value]
+        print "is that how much it is this time?  y/n"
+        #above line: e.g. 'the sprint bill is usually $175.  is that...'
+        print "you can also quit at this point."
+        typical_choice = raw_input("> ")            
+        if typical_choice == "y":
+            # if whichbill in normal_bills, then take closest match ... ?
+            print "ok, taking $x from thatbill" # % (x, y)
+            #moneyitems[whichbill] = moneyitems[whichbill] - normal_bills[whichbill]
+        elif typical_choice == "n":
+            print "n"
+        elif typical_choice == "quit":
+            exit(0)
+        else:
+            pay_bill()
+    elif whichbill in inexact_bills:
+        print "ok!  how much are you going to pay on %s?" #% inexact_bills[whichbill]???
     else:
         pay_bill()
 
