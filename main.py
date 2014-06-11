@@ -85,26 +85,26 @@ def get_bill():
         raise ValueError("no bill with name "+whichbill)
     
 # this has a long way to go
-def pay_bill(whichbill):
-    if whichbill in normal_bills:            
-        print "the typical amount out for %s is usually $%d." % (moneyitems[whichbill], normal_bills[whichbill])
+def pay_bill(bill_to_pay):
+    if bill_to_pay in normal_bills:            
+        print "the typical amount out for %s is usually $%d." % (moneyitems[bill_to_pay], normal_bills[bill_to_pay])
         #thisbillmoney = moneyitems[whichbill:value]
         print "is that how much it is this time?  y/n"
         #above line: e.g. 'the sprint bill is usually $175.  is that...'
         print "you can also quit at this point."
         typical_choice = raw_input("> ")            
         if typical_choice == "y":
-            # if whichbill in normal_bills, then take closest match ... ?
+            # if bill_to_pay in normal_bills, then take closest match ... ?
             print "ok, taking $x from thatbill" # % (x, y)
-            #moneyitems[whichbill] = moneyitems[whichbill] - normal_bills[whichbill]
+            #moneyitems[bill_to_pay] = moneyitems[whichbill] - normal_bills[bill_to_pay]
         elif typical_choice == "n":
             print "n"
         elif typical_choice == "quit":
             exit(0)
         else:
             pay_bill()
-    elif whichbill in inexact_bills:
-        print "ok!  how much are you going to pay on %s?" #% inexact_bills[whichbill]???
+    elif bill_to_pay in inexact_bills:
+        print "ok!  how much are you going to pay on %s?" #% inexact_bills[bill_to_pay]???
     else:
         pay_bill()
 
