@@ -1,103 +1,7 @@
-<<<<<<< HEAD
-rent = 1050
-comcast = 75
-sprint = 130
-electric = 100
-loans = 550
-savings = 200
-groceries = 400
-foodOut = 300
-clothes = 30
-vacation = 30
-
-expenses = [rent, comcast, sprint, electric, loans, savings, groceries, foodOut, clothes, vacation]
-
-
-print "how much did you get paid"
-newMoney = float(raw_input('> ')
-
-if newMoney > 2500:
-	subdivision()
-else:
-	pass
-if newMoney > 1000:
-	print "let's divide this evenly between vacation, savings & clothes."
-	vacationEnvelope += (newMoney/3)
-	savingsEnvelope += (newMoney/3)
-	clothesEnvelope += (newMoney/3)
-	summary()
-else:
-	print "extra?  we'll put it in savings."
-	savings += newMoney
-	print "okay, now you have %s in savings." % savings
-
-def subdivision(newMoney):
-	subdividable = newMoney
-	print "you have %s to break up here." % subdividable
-
-	for i in expenses:
-		print "putting \$ %s toward %s envelope." % (float(i), i)
-		#I don't think this will work to declare the number
-		#relevant to each member of the list of expenses
-		#ideally above print stmt says, at least for the rent portion:
-		#"putting 1050 toward rent envelope."
-		
-		subdividable -= i
-		#and now how to put actual amount toward each i?
-		#rentenvelope += float(i)
-		
-		print "there is %s in the envelope belonging to %s now" % (float(i), i)
-	
-	print "now you've got %s left.  that's all gonna go into THE FUTURE." % subdividable
-	theFutureEnvelope += subdividable
-	
-	assert subdividable == 0
-
-# basically I want to do the subdivision portion in one big for loop for the list of expenses,
-# iterating through correctly & then stopping after one round.
-
-
-def summary():
-	#want to print all envelope amounts here
-	#want to print remaining (estimated?) balance on loans.
-		# would probably have to import math to get e in order to do the P*e etc equation
-	#also probably a good idea to list when all bills get paid.
-	command = 
-=======
 # 2014 rachel kelly, creative commons license
 # remixing, redistribution ok with credit please
 
-# this is a third attempt at this program!
 # turns out there are lots of ways to approach this problem.
-
-# first, in_or_out() determines whether payday(in) or bills(out)
-# 
-# in:
-# fn envelope_distribution() determines payday distribution.  if amt > 1000,
-# then 550 to rent, 75 to sprint, 50 to electric, 40 to comcast, 50 to geico,
-# 50 to water, 200 to food, rest to savings
-# if amt < 1000, 300 to loans, rest to savings
-# all contributions go toward the item in moneyitems.  not sure how this
-# will work just yet.  it will add to static_$ENVELOPE and write it to
-# envelopes.txt file.
-#
-# out:
-# fn get_bill() will ask which bill is to be paid.  bill must have a match
-# in {moneyitems}.
-# then in pay_bill(), if the input
-# has a match in {moneyitems}, it will ask "is it a normal payout," and if it
-# is, it will take that amount out of its corresponding envelope.
-# e.g. "is 'static_sprint' a normal payout this month," "yes," "ok, taking
-# $160 out of 'static_sprint' envelope."
-# if the typical_choice == 'n', then pay_bill asks how much should come out
-# of $BILL.
-# after a bill is paid, it will ask the user if she wants to pay another.
-# if so, then the process repeats identically.
-# if not, the program writes all envelope subtractions to envelopes.txt, 
-# prints all bills paid (so a new dict is made of paid
-# bills to report at end of program), all envelope quantities, & exits.
-# decompose bill_pay into get_bill_to_pay and pay_bill for INPUT and OUTPUT,
-# respectively, VALIDATION and COMPUTATION.
 
 normal_bills = {'normal_sprint_out': 160, 'normal_oil_out': 50, 
                 'normal_rent_out': 1050, 'normal_comcast_out': 75,
@@ -130,7 +34,7 @@ def in_or_out():
     in_out_choice = raw_input("> ")    
 
     if in_out_choice == "in":
-        envelope_distribution(in_out_choice)    
+        envelope_distribution()    
     elif in_out_choice == "out":
         get_bill()
     elif in_out_choice == "quit":
@@ -139,42 +43,40 @@ def in_or_out():
         print "no doof, type 'in' or 'out', or type 'quit' to, yknow."
         in_or_out()
 
-def envelope_distribution(in_out_choice):
+def envelope_distribution():
     pass 
 
 def get_bill():
     print "which bill are you paying (which envelope are you taking from)?"
     whichbill = raw_input("> ")
     if whichbill in moneyitems:
-        # set whichbill == corresponding value in moneyitems ?? how
         pay_bill(whichbill)
     else:
-        raise ValueError("no bill with that value, try again "+whichbill)
+        raise ValueError("no bill with name "+whichbill)
     
-
 # this has a long way to go
-def pay_bill():
-    # just deleted a bunch here that will be covered above in get_bill()
-    
-    if whichbill in moneyitems:
-        
-        print "the %s is usually %s $%d." #% (moneyitems[whichbill], [*])
+def pay_bill(bill_to_pay):
+    if bill_to_pay in normal_bills:            
+        print "the typical amount out for %s is usually $%d." % (moneyitems[bill_to_pay], normal_bills[bill_to_pay])
+        #thisbillmoney = moneyitems[whichbill:value]
         print "is that how much it is this time?  y/n"
         #above line: e.g. 'the sprint bill is usually $175.  is that...'
         print "you can also quit at this point."
-        
-        
-        typical_choice = raw_input("> ")
-        
+        typical_choice = raw_input("> ")            
         if typical_choice == "y":
-            # if whichbill in normal_bills, then take closest match ... ?
-            print "ok, taking $x from thatbill" # % (x, y) 
+            # if bill_to_pay in normal_bills, then take closest match ... ?
+            print "ok, taking $x from thatbill" # % (x, y)
+            #moneyitems[bill_to_pay] = moneyitems[whichbill] - normal_bills[bill_to_pay]
         elif typical_choice == "n":
             print "n"
         elif typical_choice == "quit":
             exit(0)
         else:
-            bill_pay()
+            pay_bill()
+    elif bill_to_pay in inexact_bills:
+        print "ok!  how much are you going to pay on %s?" #% inexact_bills[bill_to_pay]???
+    else:
+        pay_bill()
 
 #test harness attempt
 #it works but is repetitive for me - but that's ok maybe!
@@ -183,4 +85,3 @@ def pay_bill():
     #in_or_out()
 
 in_or_out()
->>>>>>> objectish
